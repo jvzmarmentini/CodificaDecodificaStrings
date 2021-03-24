@@ -57,6 +57,11 @@ public class App {
     // }
 
     Codifica20108183 codificador = new Codifica20108183();
-    System.out.println(codificador.codifica("abcdefghijklmnopqrstuvxz"));
+    String textoOriginal = "Alexandre";
+    String textoCodificado = codificador.codifica(textoOriginal);
+    System.out.println("Texto original = " + textoOriginal);
+    System.out.println("Texto codificado = " + textoCodificado);
+    System.out.println("Texto decodificado = " + codificador.decodifica(textoCodificado));
+
     }
 }
