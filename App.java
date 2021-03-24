@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 import Codificadores.Codifica;
+import Codificadores.Codifica20108183;
 
 public class App {
     public static void executaCodificacao(Codifica cod, String frase) {
@@ -22,36 +23,40 @@ public class App {
 
     public static void main(String args[]) {
 
-        Path filesPath = Paths.get("..", "Codificadores");
-        System.out.println("Pasta:"+filesPath.getFileName());
-        List<String> codificadores = null;
+    //     Path filesPath = Paths.get("..", "Codificadores");
+    //     System.out.println("Pasta:"+filesPath.getFileName());
+    //     List<String> codificadores = null;
 
-        try (Stream<Path> walk = Files.walk(filesPath)) {
-            codificadores = walk
-                .map(x -> x.getFileName())
-                .map(x -> x.toString())
-                .filter(f -> !f.endsWith("Codifica.java"))
-                .filter(f -> f.endsWith(".java"))
-                .map(s -> s.toString().substring(0, s.lastIndexOf('.')))
-                .collect(Collectors.toList());
+    //     try (Stream<Path> walk = Files.walk(filesPath)) {
+    //         codificadores = walk
+    //             .map(x -> x.getFileName())
+    //             .map(x -> x.toString())
+    //             .filter(f -> !f.endsWith("Codifica.java"))
+    //             .filter(f -> f.endsWith(".java"))
+    //             .map(s -> s.toString().substring(0, s.lastIndexOf('.')))
+    //             .collect(Collectors.toList());
 
-            codificadores.forEach(fn -> System.out.println(fn));
+    //         codificadores.forEach(fn -> System.out.println(fn));
 
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
+    //     } catch (IOException e) {
+    //         e.printStackTrace();
+    //         return;
+    //     }
 
-        String frase = "Tarefa 2: contribuição em projetos públicos no GitHub.";
-        try {
-            for (String cod : codificadores) {
-                Class<?> clazz = Class.forName("Codificadores." + cod);
-                Object ref = clazz.getConstructor().newInstance();
-                executaCodificacao((Codifica) ref, frase);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return;
-        }
+    //     String frase = "Tarefa 2: contribuição em projetos públicos no GitHub.";
+    //     try {
+    //         for (String cod : codificadores) {
+    //             Class<?> clazz = Class.forName("Codificadores." + cod);
+    //             Object ref = clazz.getConstructor().newInstance();
+    //             executaCodificacao((Codifica) ref, frase);
+    //         }
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //         return;
+    //     }
+    // }
+
+    Codifica20108183 codificador = new Codifica20108183();
+    System.out.println(codificador.codifica("abcdefghijklmnopqrstuvxz"));
     }
 }
