@@ -3,8 +3,8 @@ package Codificadores;
 
 // Codificador e descodificador
 public class Codifica20108183 implements Codifica {
-    private String tabelaAlfaNumericaOriginal = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-    private String tabelaCodificada = "ZKw25zCBGDWAGhFYuI782QFgMy*637-_+?=jLlkzop:rS{u}|<y>)!@#$%ˆ&V(v`";
+    private String tabelaAlfaNumericaOriginal = "AÃBCÇDEÉFGHIJKLMNOPQRSTUVWXYZãabcçdeéfghijklmnopqrstuvwxyz0123456789+/";
+    private String tabelaCodificada = "ZKw25zCBGDWAGhFYuIÇ782QfgMy*637-_+?=jLlkzop:rS{u}ç#aq|<y>)!@#$%ˆ&V(vx`";
 
     // Codifica a string de acordo com comparações nas duas tabelas
     // Juntamente com uma variavel de deslocamento baseada no comprimento texto, ou seja, diferente a cada entrada
