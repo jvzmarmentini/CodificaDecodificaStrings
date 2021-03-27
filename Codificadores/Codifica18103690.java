@@ -1,8 +1,8 @@
 package Codificadores;
 
 public class Codifica18103690 implements Codifica {
-    private static String tabela = "ã zyxwvutsrqponmlkjihgfedcba:ç0987654321úABCDEFGHIJKLMNOPQRSTUVWXYZõâõô";
-    private static int deslc = 8;
+    private static String tabela = "ã zyxwvutsrqponmlkjihgfedcba:ç0.987654321úABCDEFGHIJKLMNOPQRSTUVWXYZõâõô";
+    private static int deslc = 7;
 
     // Recebe um string e retorna o correspondente codificado
     public String codifica(String str){
@@ -15,9 +15,7 @@ public class Codifica18103690 implements Codifica {
 				}
 			}
 		}
-
 		codificada = new StringBuilder(codificada).reverse().toString();
-
         return codificada;
 	}
 
