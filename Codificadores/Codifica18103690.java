@@ -1,7 +1,7 @@
 package Codificadores;
 
 public class Codifica18103690 implements Codifica {
-    private static String tabela = "ã zyxwvutsrqponmlkjihgfedcba:ç0.987654321úABCDEFGHIJKLMNOPQRSTUVWXYZõâõô";
+    private static String tabela = "ã zyxwvutsrqponmlkjihgfedcba:ç0.987654321úABCDEFGHIJKLMNOPQRSTUVWXYZõâô";
     private static int deslc = 7;
 
     // Recebe um string e retorna o correspondente codificado
@@ -15,13 +15,18 @@ public class Codifica18103690 implements Codifica {
 				}
 			}
 		}
-		codificada = new StringBuilder(codificada).reverse().toString();
+
+		codificada = new StringBuilder(codificada).toString();
+		String codificadaReversa = new StringBuilder(codificada).reverse().toString();
+		
+		codificada = codificadaReversa.substring(codificada.length()/2) + codificada.substring(codificada.length()/2);
         return codificada;
 	}
 
     // Recebe um string codificado e retorna o correspondente decodificado
     public String decodifica(String str){
-        String decodificada = new StringBuilder(str).reverse().toString();
+        String decodificada = new StringBuilder(str.substring(0, str.length()/2)).reverse().toString();
+		decodificada += str.substring(str.length()/2);
 
 		char[] s = decodificada.toCharArray();
 
