@@ -4,7 +4,7 @@ package Codificadores;
 // Codificador e descodificador
 public class Codifica20108183 implements Codifica {
     private String tabelaAlfaNumericaOriginal = "AÃBCÇDEÉFGHIJKLMNOPQRSTUVWXYZãabcçdeéfghijklmnopqrstuvwxyz0123456789+/";
-    private String tabelaCodificada = "ZKw25zCBGDWAGhFYuIÇ782QfgMy*637-_+?=jLlkzop:rS{u}ç#aq|<y>)!@#$%ˆ&V(vx`";
+    private String tabelaCodificada =           "ZKw25zCBGDWAOhFYmIÇ78[QfgMy*63H-_+?=jLlkEop:rS{u}çUaq|<e>)!@#$%ˆ&V(vx`";
 
     // Codifica a string de acordo com comparações nas duas tabelas
     // Juntamente com uma variavel de deslocamento baseada no comprimento texto, ou seja, diferente a cada entrada
