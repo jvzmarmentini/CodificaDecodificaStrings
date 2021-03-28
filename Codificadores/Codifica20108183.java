@@ -12,19 +12,19 @@ public class Codifica20108183 implements Codifica {
         StringBuilder textoCodificado = new StringBuilder();
         for (int i = 0; i < textoACodificar.length(); i++) {
             char caractereAtual = textoACodificar.charAt(i);
-            // Percorre a tabela alfa numerica procurando o digito
-            for (int j = 0; i < tabelaAlfaNumericaOriginal.length() - 1; j++) {
-                char letraAtual = tabelaAlfaNumericaOriginal.charAt(j);
-                if (letraAtual == caractereAtual) {
-                    // Calcula o deslocamento na tabela
-                    int deslocamento = (textoACodificar.length() - 1) * 3;
-                     // Pega o indice equivalente na outra tabela
-                    int indiceCodificado = Math.floorMod(j - deslocamento, tabelaCodificada.length());
-                    char charCodificado = tabelaCodificada.charAt(indiceCodificado);
-                    textoCodificado.append(charCodificado);
-                    break;
-                }
+            // Pega o digito na tabela alfa-numérica
+            int indiceNaTabelaNumerica = tabelaAlfaNumericaOriginal.indexOf(caractereAtual);
+            if (indiceNaTabelaNumerica == -1) {
+                // Não encontrado na tabela, apenas copia
+                textoCodificado.append(caractereAtual); 
+                continue;
             }
+            // Calcula o deslocamento na tabela
+            int deslocamento = (textoACodificar.length() - 1) * 3;
+            // Pega o indice equivalente na outra tabela
+            int indiceCodificado = Math.floorMod(indiceNaTabelaNumerica - deslocamento, tabelaCodificada.length());
+            char charCodificado = tabelaCodificada.charAt(indiceCodificado);
+            textoCodificado.append(charCodificado);
         }
         return textoCodificado.toString();
     }
@@ -33,19 +33,19 @@ public class Codifica20108183 implements Codifica {
         StringBuilder textoDecodificado = new StringBuilder();
         for (int i = 0; i < textoADecodificar.length(); i++) {
             char caractereAtual = textoADecodificar.charAt(i);
-            // Percorre a tabela codificada procurando o digito
-            for (int j = 0; i < tabelaCodificada.length() - 1; j++) {
-                char letraAtual = tabelaCodificada.charAt(j);
-                if (letraAtual == caractereAtual) {
-                    // Calcula o deslocamento na tabela
-                    int deslocamento = (textoADecodificar.length() - 1) * 3;
-                    // Pega o indice equivalente na outra tabela
-                    int indiceDecodificado = Math.floorMod(j + deslocamento, tabelaAlfaNumericaOriginal.length());
-                    char charDecodificado = tabelaAlfaNumericaOriginal.charAt(indiceDecodificado);
-                    textoDecodificado.append(charDecodificado);
-                    break;
-                }
+            // Pega o digito na tabela codificada
+            int indiceNaTabelaCodificada = tabelaCodificada.indexOf(caractereAtual);
+            if (indiceNaTabelaCodificada == -1) {
+                // Não encontrado na tabela, apenas copia
+                textoDecodificado.append(caractereAtual); 
+                continue;
             }
+            // Calcula o deslocamento na tabela
+            int deslocamento = (textoADecodificar.length() - 1) * 3;
+            // Pega o indice equivalente na outra tabela
+            int indiceDecodificado = Math.floorMod(indiceNaTabelaCodificada + deslocamento, tabelaAlfaNumericaOriginal.length());
+            char charDecodificado = tabelaAlfaNumericaOriginal.charAt(indiceDecodificado);
+            textoDecodificado.append(charDecodificado);
         }
         return textoDecodificado.toString();
     }
