@@ -1,6 +1,6 @@
 package Codificadores;
 
-public class Codifica20101121 implements Codifica {
+public class Codifica20101221 implements Codifica {
 
     @Override
     public String codifica(String str) { //Codifica a string em binário
