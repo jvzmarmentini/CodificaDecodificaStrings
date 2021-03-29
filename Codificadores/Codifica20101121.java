@@ -3,12 +3,12 @@ package Codificadores;
 public class Codifica20101121 implements Codifica {
 
     @Override
-    public String codifica(String str) {
+    public String codifica(String str) { //Codifica a string em binário
 
         String palavra = " ";
 
         for (int i = 0; i < str.length(); i++) {
-            palavra += Integer.toBinaryString(str.charAt(i));
+            palavra += Integer.toBinaryString(str.charAt(i)); //Utilização do toBinaryString
             palavra += " ";
         }
 
@@ -16,14 +16,14 @@ public class Codifica20101121 implements Codifica {
     }
 
     @Override
-    public String decodifica(String str) {
+    public String decodifica(String str) { //Decodifica de binário para string novamente
 
         String[] palavraBin = str.split(" ");
         String palavra = " ";
         
         for (int i = 0; i < palavraBin.length; i++) {
 
-            int dec = binToDec(palavraBin[i]);
+            int dec = binToDec(palavraBin[i]);  //Utiliza função-extra que foi implementada para transformar de binário para decimal
             char letra = (char) dec;
             palavra += letra;
         }   
