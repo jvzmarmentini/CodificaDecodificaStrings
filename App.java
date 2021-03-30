@@ -21,7 +21,6 @@ public class App {
     }
 
     public static void main(String args[]) {
-
         Path filesPath = Paths.get("..", "Codificadores");
         System.out.println("Pasta:"+filesPath.getFileName());
         List<String> codificadores = null;
