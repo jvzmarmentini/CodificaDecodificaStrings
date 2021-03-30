@@ -1,7 +1,7 @@
 package Codificadores;
 
 public class Codifica18103690 implements Codifica {
-	private static String tabela = "ã zyxwvutsrqponmlkjihgfedcba:ç0.987654321úABCDEFGHIJKLMNOPQRSTUVWXYZõâô";
+	private static String tabela = "ã zyxwvutsrqponmlkjihgfe+dcb=a-%@&!(*ç0).$#987654321:úABCDEFGHIJKLMNOPQRSTUVWXYZõâô;";
 	private static int deslc = 7;
 
 	// Recebe um string e retorna o correspondente codificado
