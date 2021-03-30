@@ -1,13 +1,13 @@
 package Codificadores;
 
 public class Codifica18103690 implements Codifica {
-	private static String tabela = "ã zyxwvutsrqponmlkjihgfe+dcb=a-%@&!(*ç0).$#987654321:úABCDEFGHIJKLMNOPQRSTUVWXYZõâô;";
+	private static String tabela = "ã zyxwvutsrqponmlkjihgfe+dcb=a-%@&!(*ç0).$#987654321:úABCDEFGHIJKLMNOPQRSTUVWXYZõâô_<>;{}[]^~/?";
 	private static int deslc = 7;
 
 	// Recebe um string e retorna o correspondente codificado
 	public String codifica(String str){
-		String codificada = "";
 		boolean encontrado = false;
+		String codificada = "";
 		for (char s : str.toCharArray()) {
 			encontrado = false;
 			for (int i = 0; i < tabela.length(); i++) {
