@@ -7,8 +7,7 @@ package Codificadores;
  * @see https://www.youtube.com/watch?v=FGhj3CGxl8I&ab_channel=Computerphile
  */
 public class Codifica20103144 implements Codifica {
-
-    private String str = "";
+    private static final int ROUND = 8;
     private char[] left, right, temp;
     private int key = 1;
 
@@ -19,12 +18,14 @@ public class Codifica20103144 implements Codifica {
         left = str.substring(0, str.length() / 2).toCharArray();
         right = str.substring(str.length() / 2).toCharArray();
 
-        for (int i = 0; i < right.length; i++) {
-            left[i] ^= applyKey(right[i], key);
+        for (int i = 1; i <= ROUND; i++) {
+            for (int j = 0; j < right.length; j++) {
+                left[j] ^= applyKey(right[j], key, i);
+            }
+            temp = left;
+            left = right;
+            right = temp;
         }
-        temp = left;
-        left = right;
-        right = temp;
 
         for (char c : left) {
             enc += c;
@@ -43,11 +44,13 @@ public class Codifica20103144 implements Codifica {
         left = str.substring(0, str.length() / 2).toCharArray();
         right = str.substring(str.length() / 2).toCharArray();
 
-        temp = left;
-        left = right;
-        right = temp;
-        for (int i = 0; i < right.length; i++) {
-            left[i] ^= applyKey(right[i], key);
+        for (int i = ROUND; i >= 1; i--) {
+            temp = left;
+            left = right;
+            right = temp;
+            for (int j = 0; j < right.length; j++) {
+                left[j] ^= applyKey(right[j], key, i);
+            }
         }
 
         for (char c : left) {
@@ -60,7 +63,7 @@ public class Codifica20103144 implements Codifica {
         return dec;
     }
 
-    private char applyKey(char c, int key) {
+    private char applyKey(char c, int key, int round) {
         return (char) (c + key);
     }
 
