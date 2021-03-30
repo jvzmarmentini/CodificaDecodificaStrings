@@ -7,23 +7,19 @@ package Codificadores;
  * @see https://www.youtube.com/watch?v=FGhj3CGxl8I&ab_channel=Computerphile
  */
 public class Codifica20103144 implements Codifica {
-    /**
-     * TODO - optimize code - add javadoc
-     */
-
     private static final int ROUNDS = 8;
     private String left, right, temp;
-    private int[] key = { 1, 0, 1, 0, 0, 0, 1, 1 };
+    private final int[] key = { 1, 0, 1, 0, 0, 0, 1, 1 };
 
+    /**
+     * Return a decrypted string using a Feistel Cipher based algorithm with a key
+     * and number of rounds pre-determinated in the encrypted function.
+     * 
+     * @param String str to be encrypted
+     * @return String encrypted
+     */
     @Override
     public String codifica(String str) {
-
-        /**
-         * todo improve: adding a character after the string to fix the odd-length issue
-         * isnt the best way, but was the only i could think in the moment. can and must
-         * be improved. tried to split the string into two, same length, bit arrays, but
-         * didnt worked was expected...
-         */
         if (str.length() % 2 != 0) {
             str += " ";
         }
@@ -40,6 +36,13 @@ public class Codifica20103144 implements Codifica {
         return left + "" + right;
     }
 
+    /**
+     * Return a encrypted string using a Feistel Cipher based algorithm. The key and
+     * the number of rounds are final.
+     * 
+     * @param String str encrypted
+     * @return String decrypted
+     */
     @Override
     public String decodifica(String str) {
         int strMid = str.length() / 2;
@@ -59,6 +62,14 @@ public class Codifica20103144 implements Codifica {
         return left + "" + right;
     }
 
+    /**
+     * Return the logic operation XOR of two strings. Since the XOR is commutative,
+     * doesnt matter the param order.
+     * 
+     * @param a First string
+     * @param b Second string
+     * @return XOR over First and Second strings
+     */
     private String XOR(String a, String b) {
         String tempStr = "";
         for (int i = 0; i < a.length(); i++) {
@@ -67,6 +78,13 @@ public class Codifica20103144 implements Codifica {
         return tempStr;
     }
 
+    /**
+     * Return a string applied on a key based scramble.
+     * 
+     * @param str   to be scrambled
+     * @param round of encryption or decryption
+     * @return String scrambled
+     */
     private String function(String str, int round) {
         String tempStr = "";
         for (int i = 0; i < str.length(); i++) {
