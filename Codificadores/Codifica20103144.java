@@ -7,64 +7,72 @@ package Codificadores;
  * @see https://www.youtube.com/watch?v=FGhj3CGxl8I&ab_channel=Computerphile
  */
 public class Codifica20103144 implements Codifica {
-    private static final int ROUND = 8;
-    private char[] left, right, temp;
-    private int key = 1;
+    /**
+     * TODO - optimize code - add javadoc
+     */
+
+    private static final int ROUNDS = 8;
+    private String left, right, temp;
+    private int[] key = { 1, 0, 1, 0, 0, 0, 1, 1 };
 
     @Override
     public String codifica(String str) {
-        String enc = "";
 
-        left = str.substring(0, str.length() / 2).toCharArray();
-        right = str.substring(str.length() / 2).toCharArray();
+        /**
+         * todo improve: adding a character after the string to fix the odd-length issue
+         * isnt the best way, but was the only i could think in the moment. can and must
+         * be improved. tried to split the string into two, same length, bit arrays, but
+         * didnt worked was expected...
+         */
+        if (str.length() % 2 != 0) {
+            str += " ";
+        }
+        int strMid = str.length() / 2;
+        left = str.substring(0, strMid);
+        right = str.substring(strMid);
 
-        for (int i = 1; i <= ROUND; i++) {
-            for (int j = 0; j < right.length; j++) {
-                left[j] ^= applyKey(right[j], key, i);
-            }
-            temp = left;
-            left = right;
-            right = temp;
+        for (int i = 1; i <= ROUNDS; i++) {
+            temp = right;
+            right = XOR(left, function(right, i));
+            left = temp;
         }
 
-        for (char c : left) {
-            enc += c;
-        }
-        for (char c : right) {
-            enc += c;
-        }
-
-        return enc;
+        return left + "" + right;
     }
 
     @Override
     public String decodifica(String str) {
-        String dec = "";
+        int strMid = str.length() / 2;
+        left = str.substring(0, strMid);
+        right = str.substring(strMid);
 
-        left = str.substring(0, str.length() / 2).toCharArray();
-        right = str.substring(str.length() / 2).toCharArray();
-
-        for (int i = ROUND; i >= 1; i--) {
+        for (int i = ROUNDS; i >= 1; i--) {
             temp = left;
-            left = right;
+            left = XOR(right, function(left, i));
             right = temp;
-            for (int j = 0; j < right.length; j++) {
-                left[j] ^= applyKey(right[j], key, i);
-            }
         }
 
-        for (char c : left) {
-            dec += c;
-        }
-        for (char c : right) {
-            dec += c;
+        if (str.substring(str.length() - 1) == "*") {
+            right = right.substring(0, str.length() - 1);
         }
 
-        return dec;
+        return left + "" + right;
     }
 
-    private char applyKey(char c, int key, int round) {
-        return (char) (c + key);
+    private String XOR(String a, String b) {
+        String tempStr = "";
+        for (int i = 0; i < a.length(); i++) {
+            tempStr += (char) (a.charAt(i) ^ b.charAt(i));
+        }
+        return tempStr;
+    }
+
+    private String function(String str, int round) {
+        String tempStr = "";
+        for (int i = 0; i < str.length(); i++) {
+            tempStr += (char) (str.charAt(i) + key[round - 1]);
+        }
+        return tempStr;
     }
 
     @Override
